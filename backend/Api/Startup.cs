@@ -1,24 +1,45 @@
+using Api.Schemes;
+using Api.Services;
+using GraphiQl;
+using GraphQL.Client.Http;
+using GraphQL.Client.Serializer.Newtonsoft;
+using GraphQL.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public const string graphqlPath = "/graphiql";
+        // public const string graphqlApiPath = "/api";
+        public const string graphqlApiPath = "";
+
         public void ConfigureServices(IServiceCollection services)
         {
-        }
+            services.AddScoped<GraphQLSchema>();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            services.AddGraphQL()
+                .AddSystemTextJson()
+                .AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped);
+
+            var authClient = new GraphQLHttpClient("https://api.thomasmiller.info/auth", new NewtonsoftJsonSerializer());
+            
+            services.AddSingleton(new AuthService(authClient));
+
+            services.AddControllers();
+
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.AllowSynchronousIO = true;
+            });
+
+            services.AddCors();
+        }
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -27,13 +48,16 @@ namespace Api
             }
 
             app.UseRouting();
+            app.UseGraphQL<GraphQLSchema>();
+            app.UseGraphiQl(graphqlPath, graphqlApiPath);
+
+            app.UseCors(
+                options => options.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+            );
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
