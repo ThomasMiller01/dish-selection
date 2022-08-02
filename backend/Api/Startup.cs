@@ -29,6 +29,7 @@ namespace Api
             var authClient = new GraphQLHttpClient("https://api.thomasmiller.info/auth", new NewtonsoftJsonSerializer());
             
             services.AddSingleton(new AuthService(authClient));
+            services.AddSingleton<RecipeService>();
 
             services.AddControllers();
 
