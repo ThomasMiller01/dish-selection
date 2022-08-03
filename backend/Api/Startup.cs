@@ -22,9 +22,9 @@ namespace Api
         {
             services.AddScoped<GraphQLSchema>();
 
-            services.AddGraphQL()
-                .AddSystemTextJson()
-                .AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped);
+            services.AddGraphQL(options => {
+                options.EnableMetrics = false;
+            }).AddSystemTextJson().AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped);
 
             var authClient = new GraphQLHttpClient("https://api.thomasmiller.info/auth", new NewtonsoftJsonSerializer());
             

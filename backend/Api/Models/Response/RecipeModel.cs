@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -13,8 +14,8 @@ namespace Api.Models.Response
         public string instructions { get; set; }
         public List<Ingredient> ingredients { get; set; }        
         public double preptime { get; set; }        
-        public string last_cooked { get; set; }
-        public string created { get; set; }
+        public DateTime last_cooked { get; set; }
+        public DateTime created { get; set; }
         public List<Tag> tags { get; set; }
     }
 

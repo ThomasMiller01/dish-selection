@@ -10,7 +10,7 @@ namespace Api.Types
 {
     public class TypeUtils
     {
-        public static string serializeIngredientUnit(IngredientUnit _unit)
+        public static string serializeEnum(Enum _unit)
         {
             // input: "GRAM"
             // output: "\"g\""

@@ -25,3 +25,77 @@ query($token:String!) {
 {
   "token": "jwttoken"
 }
+
+----- Get Recipe By Id -----
+query($recipe_id:Int!, $token:String!) {
+  recipe(recipe_id:$recipe_id, token:$token) {
+    id
+    title  
+    description
+    instructions
+    ingredients {
+      id
+      name
+      amount
+      unit
+      comment
+    }
+    preptime
+    last_cooked
+    created
+    tags {
+      id
+      value
+    }
+  }
+}
+----- Variables -----
+{
+  "recipe_id": 1,
+  "token": "jwttoken"
+}
+
+----- Search Recipes -----
+query($search:SearchRecipeType!, $token:String!) {
+  search(search:$search, token:$token) {
+    id
+    title  
+    description
+    instructions
+    ingredients {
+      id
+      name
+      amount
+      unit
+      comment
+    }
+    preptime
+    last_cooked
+    created
+    tags {
+      id
+      value
+    }
+  }
+}
+----- Variables -----
+{
+  "search": {
+    "keywords": "",
+    "ingredients": [
+      "luck"
+    ],
+    "preptime": {
+      "value": 5,
+      "comparator": "EQUALS"
+    },
+    "last_cooked": {
+      "value": "10:30:15 12.12.2010",
+      "comparator": "BEFORE"
+    },
+    "tags": [
+      "yummy"
+    ]
+  },
+  "token": "jwttoken"
+}

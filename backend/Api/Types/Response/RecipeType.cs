@@ -26,7 +26,7 @@ namespace Api.Types.Response
             Field(x => x.id);
             Field(x => x.name);
             Field(x => x.amount);
-            Field<StringGraphType>("unit", resolve: x => TypeUtils.serializeIngredientUnit(x.Source.unit));
+            Field<StringGraphType>("unit", resolve: x => TypeUtils.serializeEnum(x.Source.unit));
             Field(x => x.comment);
         }
     }
