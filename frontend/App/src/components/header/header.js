@@ -27,7 +27,7 @@ class Header extends Component {
                 Home
               </NavLink>
               <NavLink to="/recipes" className="nav-link">
-                Recipes
+                Rezepte
               </NavLink>
             </div>
             <button

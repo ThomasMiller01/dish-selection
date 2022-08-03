@@ -13,6 +13,7 @@ namespace Api.Types.Response
             Field(x => x.instructions);
             Field<ListGraphType<IngredientType>>("ingredients");
             Field(x => x.preptime);
+            Field(x => x.people);
             Field(x => x.last_cooked);
             Field(x => x.created);
             Field<ListGraphType<TagType>>("tags");

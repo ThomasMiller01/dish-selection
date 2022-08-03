@@ -52,6 +52,7 @@ class Recipes extends Component {
               title
               description
               preptime
+              people
               last_cooked
               tags {
                 id
@@ -105,22 +106,28 @@ class Recipes extends Component {
                   <h4>
                     {recipe.title} <small>{recipe.preptime} min.</small>
                   </h4>
-                  <small>ID: {recipe.id}</small>
                 </Cardheader>
                 <CardBody>
+                  <div>
+                    <span className="badge people-container" key={index}>
+                      {recipe.people} Personen
+                    </span>
+                    <span className="badge people-container" key={index}>
+                      Zubereitet:{" "}
+                      <Datetime value={recipe.last_cooked} format="date" />
+                    </span>
+                  </div>
                   <p>{recipe.description}</p>
                   <p></p>
                 </CardBody>
-                <p className="tags-container">
-                  {recipe.tags.map((tag, index) => (
-                    <span className="badge rounded-pill" key={index}>
-                      {tag.value}
-                    </span>
-                  ))}
-                </p>
                 <CardFooter>
-                  Zubereitet:{" "}
-                  <Datetime value={recipe.last_cooked} format="date" />
+                  <div className="tags-container">
+                    {recipe.tags.map((tag, index) => (
+                      <span className="badge rounded-pill" key={index}>
+                        {tag.value}
+                      </span>
+                    ))}
+                  </div>
                 </CardFooter>
               </CardFrame>
             </a>

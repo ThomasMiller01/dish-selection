@@ -17,7 +17,8 @@ namespace Api.Types.Request
             Field(x => x.description);
             Field(x => x.instructions);
             Field<ListGraphType<AddIngredientType>>("ingredients");
-            Field(x => x.preptime);            
+            Field(x => x.preptime);
+            Field(x => x.people);
             Field<ListGraphType<AddTagType>>("tags");
         }
     }

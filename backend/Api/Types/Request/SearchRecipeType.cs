@@ -10,6 +10,7 @@ namespace Api.Types.Request
             Field(x => x.keywords, nullable: true);
             Field<ListGraphType<StringGraphType>>("ingredients");
             Field<SearchPrepTimeType>("preptime");
+            Field<SearchPeopleType>("people");
             Field<SearchLastCookedType>("last_cooked");
             Field<ListGraphType<StringGraphType>>("tags");            
         }
@@ -18,6 +19,15 @@ namespace Api.Types.Request
     public class SearchPrepTimeType : InputObjectGraphType<SearchPrepTime>
     {
         public SearchPrepTimeType()
+        {
+            Field(x => x.value);
+            Field<DoubleComparatorType>("comparator");
+        }
+    }
+
+    public class SearchPeopleType : InputObjectGraphType<SearchPrepTime>
+    {
+        public SearchPeopleType()
         {
             Field(x => x.value);
             Field<DoubleComparatorType>("comparator");

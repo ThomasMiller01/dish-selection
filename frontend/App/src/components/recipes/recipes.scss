@@ -13,8 +13,7 @@
     }
 
     .tags-container {
-        padding: 0 10px;
-        font-size: 17px;
+        font-size: 18px;
     }
 
     .badge {
@@ -22,4 +21,86 @@
         color: var(--text);
         margin: 5px;
     }
+
+    .people-container {
+        font-size: 14px;
+    }
+}
+
+// page for displaying a single recipe
+.recipe-container {
+    padding: 0 15%;
+    color: var(--text_dark);
+
+    .header {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0 50px 0;
+    }
+
+    .metadata {
+        width: 100%;
+        text-align: center;
+
+        .badge {
+            background-color: var(--background_container);
+            color: var(--text_light);
+            margin: 3px;
+            font-weight: normal;
+            font-size: 15px;
+        }
+
+        .tags-container>.badge {
+            font-size: 13px !important;
+        }
+    }
+
+    h3>small {
+        margin-left: 10px;
+        font-size: 22px;
+    }
+
+    .ingredients-container {
+        margin: 2% 0;
+
+        table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 60%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+
+            th,
+            td {
+                padding: 12px 15px;
+            }
+
+            tbody tr {
+                border-bottom: 1px solid #dddddd;
+            }
+
+            tbody tr td:first-child {
+                text-align: right;
+            }
+
+            tbody tr:nth-of-type(even) {
+                background-color: var(--text_light);
+            }
+
+            tbody tr:nth-of-type(odd) {
+                background-color: var(--background_light);
+            }
+        }
+    }
+
+    .instructions-container {
+        margin: 2% 0;
+    }
+
+    .description-container {
+        margin: 2% 0;
+    }
+
 }

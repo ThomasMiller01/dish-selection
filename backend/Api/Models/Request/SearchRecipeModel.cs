@@ -13,11 +13,19 @@ namespace Api.Models.Request
         public string keywords { get; set; }
         public List<string> ingredients { get; set; }
         public SearchPrepTime preptime { get; set; }
+        public SearchPeople people { get; set; }
         public SearchLastCooked last_cooked { get; set; }
         public List<string> tags { get; set; }
     }
 
     public class SearchPrepTime
+    {
+        public double value { get; set; }
+        public DoubleComparator comparator { get; set; }
+
+    }
+
+    public class SearchPeople
     {
         public double value { get; set; }
         public DoubleComparator comparator { get; set; }

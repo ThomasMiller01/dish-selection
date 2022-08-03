@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { gql } from "apollo-boost";
 
@@ -6,6 +6,8 @@ import { backend_api, auth_api } from "../api_urls";
 import Page from "../page";
 
 import AuthService from "library/src/components/AuthService/authservice";
+import AlertMessage from "library/src/components/AlertMessage/alertmessage";
+import Datetime from "library/src/components/Datetime/datetime";
 
 class Recipe extends Component {
   constructor(props) {
@@ -22,6 +24,8 @@ class Recipe extends Component {
         uri: backend_api,
       }),
     });
+
+    this.alertRef = createRef();
   }
 
   componentDidMount() {
@@ -30,13 +34,14 @@ class Recipe extends Component {
 
   state = {
     loading: true,
-    error: "",
+    error: false,
     id: -1,
     title: "",
     description: "",
     instructions: "",
     ingredients: [],
     preptime: 0,
+    people: 0,
     last_cooked: "",
     created: "",
     tags: [],
@@ -60,6 +65,7 @@ class Recipe extends Component {
                   comment
                 }
                 preptime
+                people
                 last_cooked
                 created
                 tags {
@@ -75,12 +81,11 @@ class Recipe extends Component {
           },
         })
         .then((res) => {
-          console.log(res);
           this.setState({ ...res.data.recipe, loading: false });
         })
-        .catch((err) => {
-          console.log(err);
-          this.setState({ loading: false, error: err });
+        .catch((_) => {
+          this.alertRef.current.alert("Could not load recipe ...", "error");
+          this.setState({ loading: false, error: true });
         });
     }
   };
@@ -88,46 +93,76 @@ class Recipe extends Component {
   render() {
     return (
       <Page>
+        <AlertMessage ref={this.alertRef} />
         <this.renderRecipe />
       </Page>
     );
   }
 
   renderRecipe = () => {
-    if (this.state.loading) return <span>Loading ...</span>;
-    if (this.state.error !== "")
-      return <span>Could not load recipe: {this.state.error.toString()}</span>;
+    if (this.state.loading) {
+      return (
+        <div className="recipe-loading-container">
+          <div className="spinner-grow" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      );
+    }
+
+    if (this.state.error) return <React.Fragment />;
 
     return (
-      <React.Fragment>
-        <h1>Recipe</h1>
-        <p>{this.state.id}</p>
-        <p>{this.state.title}</p>
-        <p>{this.state.description}</p>
-        <p>{this.state.instructions}</p>
-        <p>
-          <ul>
-            {this.state.ingredients.map((ingredient, index) => (
-              <li key={index}>
-                {ingredient.id}, {ingredient.name}, {ingredient.amount}{" "}
-                {ingredient.unit}, {ingredient.comment}
-              </li>
-            ))}
-          </ul>
-        </p>
-        <p>{this.state.preptime}</p>
-        <p>
-          <ul>
+      <div className="recipe-container">
+        <div className="header">
+          <h1>{this.state.title}</h1>
+        </div>
+        <div className="metadata">
+          <span className="badge">{this.state.preptime} min.</span>
+          <span className="badge">{this.state.people} Personen</span>
+          <span className="badge">
+            Zubereitet <Datetime value={this.state.last_cooked} format="date" />
+          </span>
+          <span className="badge">
+            Seit <Datetime value={this.state.created} format="date" />
+          </span>
+          <p className="tags-container">
             {this.state.tags.map((tag, index) => (
-              <li key={index}>
-                {tag.id}, {tag.value}
-              </li>
+              <span className="badge rounded-pill" key={index}>
+                {tag.value}
+              </span>
             ))}
-          </ul>
-        </p>
-        <p>{this.state.last_cooked}</p>
-        <p>{this.state.created}</p>
-      </React.Fragment>
+          </p>
+        </div>
+        <div className="ingredients-container">
+          <h3>
+            Zutaten: <small>für {this.state.people} Personen</small>
+          </h3>
+          <table>
+            <tbody>
+              {this.state.ingredients.map((ingredient, index) => (
+                <tr key={index}>
+                  <td>
+                    {ingredient.amount} {ingredient.unit}
+                  </td>
+                  <td>{ingredient.name}</td>
+                  <td>{ingredient.comment}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="instructions-container">
+          <h3>
+            Zubereitung: <small>{this.state.preptime} min.</small>
+          </h3>
+          <p dangerouslySetInnerHTML={{ __html: this.state.instructions }} />
+        </div>
+        <div className="description-container">
+          <h3>Beschreibung:</h3>
+          <p>{this.state.description}</p>
+        </div>
+      </div>
     );
   };
 }

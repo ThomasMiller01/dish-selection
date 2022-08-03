@@ -35,8 +35,9 @@ namespace Api.Services
                     var description = recipesReader.GetString(2);
                     var instructions = recipesReader.GetString(3);
                     var preptime = recipesReader.GetDouble(4);
-                    var last_cooked = recipesReader.GetDateTime(5);
-                    var created = recipesReader.GetDateTime(6);
+                    var people = recipesReader.GetInt32(5);
+                    var last_cooked = recipesReader.GetDateTime(6);
+                    var created = recipesReader.GetDateTime(7);
 
                     recipes.Add(new RecipeModel
                     {
@@ -45,6 +46,7 @@ namespace Api.Services
                         description = description,
                         instructions = instructions,
                         preptime = preptime,
+                        people = people,
                         last_cooked = last_cooked,
                         created = created,
                         ingredients = new List<Ingredient>(),
@@ -148,6 +150,13 @@ namespace Api.Services
                 wheres.Add(parsedPreptime);
             }
 
+            // people
+            if (search.people != null)
+            {
+                var parsedPeople = string.Format("people{0}'{1}'", TypeUtils.serializeEnum(search.people.comparator), search.people.value);
+                wheres.Add(parsedPeople);
+            }
+
             // last_cooked
             if (search.last_cooked != null)
             {
@@ -220,8 +229,9 @@ namespace Api.Services
                             description = reader.GetString(2),
                             instructions = reader.GetString(3),
                             preptime = reader.GetDouble(4),
-                            last_cooked = reader.GetDateTime(5),
-                            created = reader.GetDateTime(6),
+                            people = reader.GetInt32(5),
+                            last_cooked = reader.GetDateTime(6),
+                            created = reader.GetDateTime(7),
                             ingredients = new List<Ingredient>(),
                             tags = new List<Tag>(),
                         });
@@ -229,27 +239,27 @@ namespace Api.Services
                     var recipeIndex = recipes.FindIndex(r => r.id == recipe_id);
 
                     // add ingredient
-                    var ingredient_id = UtilityService.CheckDbForNull(reader, 10) ? -1 : reader.GetInt32(10);
+                    var ingredient_id = UtilityService.CheckDbForNull(reader, 11) ? -1 : reader.GetInt32(11);
                     if (ingredient_id != -1 && recipes[recipeIndex].ingredients.FindIndex(r => r.id == ingredient_id) == -1)
                     {
                         recipes[recipeIndex].ingredients.Add(new Ingredient
                         {
                             id = ingredient_id,
-                            name = reader.GetString(11),
-                            amount = reader.GetDouble(12),
-                            unit = (IngredientUnit)Enum.Parse(typeof(IngredientUnit), reader.GetString(13), true),
-                            comment = reader.GetString(14)
+                            name = reader.GetString(12),
+                            amount = reader.GetDouble(13),
+                            unit = (IngredientUnit)Enum.Parse(typeof(IngredientUnit), reader.GetString(14), true),
+                            comment = reader.GetString(15)
                         });
                     }
 
                     // add tag
-                    var tag_id = UtilityService.CheckDbForNull(reader, 18) ? -1 : reader.GetInt32(18);
+                    var tag_id = UtilityService.CheckDbForNull(reader, 19) ? -1 : reader.GetInt32(19);
                     if (tag_id != -1 && recipes[recipeIndex].tags.FindIndex(r => r.id == tag_id) == -1)
                     {
                         recipes[recipeIndex].tags.Add(new Tag
                         {
                             id = tag_id,
-                            value = reader.GetString(19)
+                            value = reader.GetString(20)
                         });
                     }
                 }
@@ -284,8 +294,9 @@ namespace Api.Services
                 recipe.description = recipeReader.GetString(2);
                 recipe.instructions = recipeReader.GetString(3);
                 recipe.preptime = recipeReader.GetDouble(4);
-                recipe.last_cooked = recipeReader.GetDateTime(5);
-                recipe.created = recipeReader.GetDateTime(6);
+                recipe.people = recipeReader.GetInt32(5);
+                recipe.last_cooked = recipeReader.GetDateTime(6);
+                recipe.created = recipeReader.GetDateTime(7);
                 recipe.ingredients = new List<Ingredient>();
                 recipe.tags = new List<Tag>();
             }
@@ -360,13 +371,13 @@ namespace Api.Services
             var getLastId = "SELECT last_insert_id()";
 
             // add recipe
-            var addRecipeQuery = "INSERT INTO recipes (title, description, instructions, preptime) VALUES (@title, @description, @instructions, @preptime)";
+            var addRecipeQuery = "INSERT INTO recipes (title, description, instructions, preptime, people) VALUES (@title, @description, @instructions, @preptime, @people)";
             command.CommandText = addRecipeQuery;
             command.Parameters.Clear();
             command.Parameters.AddWithValue("@title", recipe.title);
             command.Parameters.AddWithValue("@description", recipe.description);
             command.Parameters.AddWithValue("@instructions", recipe.instructions);
-            command.Parameters.AddWithValue("@preptime", recipe.preptime);
+            command.Parameters.AddWithValue("@people", recipe.people);
             command.ExecuteNonQuery();
             
             // get recipe id

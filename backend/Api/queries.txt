@@ -41,6 +41,7 @@ query($recipe_id:Int!, $token:String!) {
       comment
     }
     preptime
+    people
     last_cooked
     created
     tags {
@@ -70,6 +71,7 @@ query($search:SearchRecipeType!, $token:String!) {
       comment
     }
     preptime
+    people
     last_cooked
     created
     tags {
@@ -87,6 +89,10 @@ query($search:SearchRecipeType!, $token:String!) {
     ],
     "preptime": {
       "value": 5,
+      "comparator": "EQUALS"
+    },
+    "people": {
+      "value": 4,
       "comparator": "EQUALS"
     },
     "last_cooked": {

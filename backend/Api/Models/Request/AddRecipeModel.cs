@@ -13,6 +13,7 @@ namespace Api.Models.Request
         public string instructions { get; set; }
         public List<Ingredient> ingredients { get; set; }
         public double preptime { get; set; }
+        public double people { get; set; }
         public List<Tag> tags { get; set; }
     }
 

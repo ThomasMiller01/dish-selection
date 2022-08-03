@@ -13,7 +13,8 @@ namespace Api.Models.Response
         public string description { get; set; }
         public string instructions { get; set; }
         public List<Ingredient> ingredients { get; set; }        
-        public double preptime { get; set; }        
+        public double preptime { get; set; }
+        public int people{ get; set; }
         public DateTime last_cooked { get; set; }
         public DateTime created { get; set; }
         public List<Tag> tags { get; set; }
@@ -51,6 +52,12 @@ namespace Api.Models.Response
 
         [EnumMember(Value = "TL")]
         Tea_Spoon,
+
+        [EnumMember(Value = "ml")]
+        Milli_Liter,
+
+        [EnumMember(Value = "l")]
+        Liter,
 
         [EnumMember(Value = "etwas")]
         A_Bit,
