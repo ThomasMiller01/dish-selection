@@ -1,0 +1,30 @@
+.sidebar {
+  h1 {
+    color: var(--highlight);
+
+    a {
+      &:hover {
+        color: var(--highlight);
+        text-decoration: none;
+      }
+    }
+  }
+
+  color: var(--text);
+  background-color: var(--background);
+  height: 100% !important;
+
+  li {
+    color: var(--highlight);
+  }
+
+  a {
+    color: var(--highlight);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--text);
+      text-decoration: underline;
+    }
+  }
+}

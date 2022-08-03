@@ -1,0 +1,16 @@
+.login-page-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../../public/images/background.png");
+}
+
+.login-section-container {
+    display: inline-block;
+    width: 100%;
+    height: 80vh;
+
+    table {
+        width: 100%;
+        height: 100%;
+    }
+}

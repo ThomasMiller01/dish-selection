@@ -1,0 +1,44 @@
+.user-badge-container {
+    background-color: var(--background_light);
+    padding: 5px 10px;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+    width: fit-content;
+
+    a {
+        color: var(--text_dark) !important;
+        text-decoration: none !important;
+        cursor: "pointer";
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    button {
+        color: var(--text_dark);
+        cursor: "pointer";
+    }
+}
+
+.btn-danger {
+    background-color: #dc3545 !important;
+    color: var(--text_light) !important;
+
+    &:hover {
+        background-color: #BB2D3B !important;
+    }
+}
+
+.logout-container {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

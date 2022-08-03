@@ -1,0 +1,42 @@
+.error-page-container {
+  width: 100%;
+  background-color: var(--background);
+  font-family: Open Sans, Arial, sans-serif;
+  line-height: 1.15;
+  color: var(--text_light);
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+}
+
+.error-page-cover {
+  width: 100%;
+  vertical-align: middle;
+  padding: 0 20px;
+
+  table {
+    width: 100%;
+  }
+}
+
+.error-page-main-text {
+  font-size: 36px;
+  margin: 0.67em 0;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+
+  small {
+    font-size: 68%;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--text_light);
+  }
+}
+
+.error-page-sub-text {
+  color: var(--text_light);
+  font-size: 21px;
+  line-height: 1.4;
+}

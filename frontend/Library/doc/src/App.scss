@@ -1,0 +1,11 @@
+.app {
+    width: 100%;
+
+    .row {
+        margin: 0;
+    }
+
+    div[class^="col-"] {
+        padding: 0;
+    }
+}

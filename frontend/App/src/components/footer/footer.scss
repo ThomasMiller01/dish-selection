@@ -1,0 +1,14 @@
+.footer-container {
+    background-color: var(--background);
+    color: var(--text_light);
+    min-height: 7vh;
+
+    a {
+        color: var(--highlight);
+
+        &:hover {
+            filter: brightness(75%);
+            text-decoration: underline;
+        }
+    }
+}

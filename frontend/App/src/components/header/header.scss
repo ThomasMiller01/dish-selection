@@ -1,0 +1,71 @@
+.header-container {
+    width: 100%;
+    font-size: 20px;
+    min-height: 6.5vh;
+    background-color: var(--background);
+}
+
+.header-nav-container {
+    min-height: 8vh;
+    padding: 7px;
+}
+
+.header-brand-link {
+    padding: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    span {
+        color: var(--text_light);
+        margin: 10px;
+        font-size: 24px;
+    }
+}
+
+.nav-link {
+    color: var(--text_light);
+
+    &:hover {
+        color: var(--highlight);
+    }
+
+    &:focus {
+        color: var(--highlight);
+    }
+}
+
+.active {
+    color: var(--highlight);
+}
+
+.header-nav-items {
+    margin-top: 50px;
+}
+
+.header-nav-mobile-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.header-nav-divider {
+    display: block;
+    height: 50px;
+}
+
+.header-user-account {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@media (min-width: 992px) {
+    .header-nav-items {
+        margin-top: 0;
+    }
+
+    .header-nav-divider {
+        display: none !important;
+    }
+}

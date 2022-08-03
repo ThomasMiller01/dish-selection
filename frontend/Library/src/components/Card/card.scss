@@ -1,0 +1,51 @@
+.card-container {
+  background-color: var(--background_container);
+  color: var(--text_light);
+
+  .card-footer-container {
+    padding: 5px 0 10px 15px;
+  }
+
+  button {
+    color: var(--text);
+    background-color: var(--text_light);
+    border-color: var(--text);
+
+    &:hover {
+      background-color: var(--background_container);
+      border-color: var(--text_light);
+      color: var(--text_light);
+    }
+  }
+
+  table {
+    color: var(--text_light);
+
+    button {
+      color: var(--text_light);
+    }
+  }
+
+  input {
+    background-color: var(--text_light);
+    border-color: var(--background_light);
+    color: var(--text);
+
+    &:focus {
+      color: var(--text);
+      background-color: var(--text_light);
+    }
+
+    &::placeholder {
+      filter: brightness(150%);
+    }
+  }
+
+  .card-button {
+    color: var(--text_light);
+  }
+
+  a {
+    color: var(--text_light);
+  }
+}

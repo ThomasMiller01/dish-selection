@@ -1,0 +1,5 @@
+.page-container {
+  width: 100%;
+  min-height: 85vh;
+  background-color: var(--background_light);
+}

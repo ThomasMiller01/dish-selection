@@ -1,0 +1,10 @@
+.alert-message-container {
+  margin: 15px;
+}
+
+.alert-message {
+  padding: 10px 15px;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+}

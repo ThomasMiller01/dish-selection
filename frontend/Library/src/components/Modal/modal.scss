@@ -1,0 +1,58 @@
+.modal-container {
+  background-color: var(--background_container);
+  color: var(--text_light);
+
+  button {
+    background-color: var(--text_light);
+    color: var(--text_dark) !important;
+
+    &:hover {
+      background-color: var(--background_container);
+      border-color: var(--text_light);
+      color: var(--text_light) !important;
+    }
+  }
+
+  .modal-button-close {
+    font-size: 22px;
+    background-color: transparent;
+    color: var(--text_light) !important;
+
+    &:hover {
+      border-color: transparent;
+    }
+  }
+
+  .btn-danger {
+    background-color: #dc3545 !important;
+    color: var(--text_light) !important;
+
+    &:hover {
+      background-color: #bb2d3b !important;
+    }
+  }
+
+  textarea {
+    background-color: var(--text_light);
+    border-color: var(--background_light);
+    color: var(--text);
+
+    &:focus {
+      color: var(--text);
+      background-color: var(--text_light);
+    }
+
+    &::placeholder {
+      color: var(--text);
+    }
+  }
+}
+
+.modal-button-clear {
+  background-color: #dc3545 !important;
+  color: var(--text_light) !important;
+
+  &:hover {
+    background-color: #bb2d3b !important;
+  }
+}

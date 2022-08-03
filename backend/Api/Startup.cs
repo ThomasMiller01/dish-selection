@@ -48,13 +48,13 @@ namespace Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-            app.UseGraphQL<GraphQLSchema>();
-            app.UseGraphiQl(graphqlPath, graphqlApiPath);
-
             app.UseCors(
                 options => options.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
             );
+
+            app.UseRouting();
+            app.UseGraphQL<GraphQLSchema>();
+            app.UseGraphiQl(graphqlPath, graphqlApiPath);            
 
             app.UseEndpoints(endpoints =>
             {

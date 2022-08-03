@@ -1,0 +1,1 @@
+This is the documentation for the library. It includes components that can be used to build multiple projects with the same style, so that they are assoziated with the same brand. A Table of Contents can be found on the sidebar (left).
