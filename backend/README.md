@@ -8,15 +8,15 @@ MySql database
 
 **recipes**
 
-| id                               | title        | description  | instructions   | preptime | last_cooked | created  |
-| -------------------------------- | ------------ | ------------ | -------------- | -------- | ----------- | -------- |
-| int (primary key, autoincrement) | varchar(255) | varchar(255) | varchar(10000) | float    | datetime    | datetime |
+| id                               | title        | description  | instructions   | preptime | last_cooked                          | created                              |
+| -------------------------------- | ------------ | ------------ | -------------- | -------- | ------------------------------------ | ------------------------------------ |
+| int (primary key, autoincrement) | varchar(255) | varchar(255) | varchar(10000) | double   | datetime (default current_timestamp) | datetime (default current_timestamp) |
 
 **ingredients**
 
 | id                               | name         | amount | unit         | comment        |
 | -------------------------------- | ------------ | ------ | ------------ | -------------- |
-| int (primary key, autoincrement) | varchar(255) | float  | varchar(255) | varchar(10000) |
+| int (primary key, autoincrement) | varchar(255) | double | varchar(255) | varchar(10000) |
 
 **tags**
 

@@ -12,7 +12,7 @@ namespace Api.Models.Response
         public string description { get; set; }
         public string instructions { get; set; }
         public List<Ingredient> ingredients { get; set; }        
-        public float preptime { get; set; }        
+        public double preptime { get; set; }        
         public string last_cooked { get; set; }
         public string created { get; set; }
         public List<Tag> tags { get; set; }
@@ -22,7 +22,7 @@ namespace Api.Models.Response
     {
         public int id { get; set; }
         public string name { get; set; }
-        public float amount { get; set; }
+        public double amount { get; set; }
         public IngredientUnit unit {get; set;}
         public string comment{ get; set; }
     }

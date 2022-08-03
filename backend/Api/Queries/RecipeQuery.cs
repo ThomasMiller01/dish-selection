@@ -1,14 +1,13 @@
-﻿using Api.Models.Response;
-using Api.Services;
-using Api.Types;
+﻿using Api.Services;
+using Api.Types.Response;
 using GraphQL;
 using GraphQL.Types;
 
 namespace Api.Queries
 {
-    public class DishQuery : ObjectGraphType
+    public class RecipeQuery : ObjectGraphType
     {
-        public DishQuery(AuthService authService, RecipeService recipeService)
+        public RecipeQuery(AuthService authService, RecipeService recipeService)
         {
             Field<ListGraphType<RecipeType>>(
                 name: "recipes",

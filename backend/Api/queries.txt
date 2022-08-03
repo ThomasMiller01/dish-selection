@@ -1,0 +1,27 @@
+----- Get All Recipes -----
+query($token:String!) {
+  recipes(token:$token) {
+    id
+    title  
+    description
+    instructions
+    ingredients {
+      id
+      name
+      amount
+      unit
+      comment
+    }
+    preptime
+    last_cooked
+    created
+    tags {
+      id
+      value
+    }
+  }
+}
+----- Variables -----
+{
+  "token": "jwttoken"
+}

@@ -1,4 +1,5 @@
-﻿using Api.Queries;
+﻿using Api.Mutations;
+using Api.Queries;
 using Api.Services;
 using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
@@ -13,8 +14,8 @@ namespace Api.Schemes
     {
         public GraphQLSchema(IServiceProvider provider) : base(provider)
         {            
-            Query = provider.GetRequiredService<DishQuery>();
-            // Mutation = new ProjectMutation(this.projectService, this.authService, this.eventRegistry);
+            Query = provider.GetRequiredService<RecipeQuery>();
+            Mutation = provider.GetRequiredService<RecipeMutation>();
         }
     }
 }

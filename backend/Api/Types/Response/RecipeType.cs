@@ -1,8 +1,7 @@
 ﻿using Api.Models.Response;
 using GraphQL.Types;
-using Newtonsoft.Json;
 
-namespace Api.Types
+namespace Api.Types.Response
 {
     public class RecipeType : ObjectGraphType<RecipeModel>
     {
@@ -27,22 +26,7 @@ namespace Api.Types
             Field(x => x.id);
             Field(x => x.name);
             Field(x => x.amount);
-            Field<StringGraphType>("unit", resolve: x =>
-            {
-                // input: "GRAM"
-                // output: "\"g\""
-                var serialized = JsonConvert.SerializeObject(x.Source.unit);
-
-                // input: "\"g\""
-                // output: "g"
-                var trimmed = serialized.Remove(0, 1);
-                trimmed = trimmed.Remove(trimmed.Length - 1, 1);
-
-                var unit = trimmed;
-
-                return unit;
-            }
-            );
+            Field<StringGraphType>("unit", resolve: x => TypeUtils.serializeIngredientUnit(x.Source.unit));
             Field(x => x.comment);
         }
     }
@@ -54,12 +38,5 @@ namespace Api.Types
             Field(x => x.id);
             Field(x => x.value);
         }
-    }
-
-    public class IngredientUnitType : EnumerationGraphType<IngredientUnit> {
-        public IngredientUnitType()
-        {
-            
-        }
-    }
+    }   
 }

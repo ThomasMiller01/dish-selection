@@ -1,0 +1,44 @@
+----- Add Recipe -----
+mutation($recipe:AddRecipeType!, $token:String!) {
+  addRecipe(recipe:$recipe, token:$token) {
+    value
+  }
+}
+----- Variables -----
+{
+  "recipe": {
+    "title": "Example Recipe",
+    "description": "This is an example recipe.",
+    "instructions": "1. Cook\r\n2. Eat",
+    "ingredients": [
+      {
+        "name": "Luck",
+        "amount": 7,
+        "unit": "PIECES",
+        "comment": "No comment."
+      },
+      {
+        "name": "Luck",
+        "amount": 12,
+        "unit": "PIECES",
+        "comment": "More Luck"
+      },
+      {
+        "name": "Luck",
+        "amount": 42,
+        "unit": "PIECES",
+        "comment": "You need a lot of Luck. Source:Trust me bro"
+      }
+    ],
+    "preptime": 3,
+    "tags": [
+      {
+        "value": "Yummy"
+      },
+      {
+        "value": "Affordable"
+      }
+    ]
+  },
+  "token": "jwttoken"
+}
