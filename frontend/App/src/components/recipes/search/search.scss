@@ -1,0 +1,38 @@
+.search-controls-container {
+    .card-body {
+        padding: 10px;
+
+        .row,
+        .collapse {
+            width: 100%;
+        }
+    }
+
+    .filter-button {
+        float: right;
+        font-size: 20px;
+        padding: 5px 10px;
+        margin-bottom: 15px;
+    }
+
+    .search-button {
+        width: fit-content;
+        float: right;
+
+        background-color: var(--highlight);
+        color: var(--text);
+    }
+
+    .form-select {
+        flex: none;
+        width: fit-content;
+    }
+}
+
+.no-recipes-container>h4 {
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

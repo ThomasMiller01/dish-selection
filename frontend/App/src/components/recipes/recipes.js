@@ -15,6 +15,7 @@ import Datetime from "library/src/components/Datetime/datetime";
 import AlertMessage from "library/src/components/AlertMessage/alertmessage";
 
 import "./recipes.scss";
+import SearchFilter from "./search/search";
 
 class Recipes extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class Recipes extends Component {
     });
 
     this.alertRef = createRef();
+    this.searchRef = createRef();
   }
 
   state = {
@@ -39,15 +41,16 @@ class Recipes extends Component {
   };
 
   componentDidMount() {
-    this.getRecipes();
+    this.searchRecipes(this.searchRef.current.getSearch());
   }
 
-  getRecipes = () => {
+  searchRecipes = (search) => {
+    this.setState({ loading: true });
     this.api
       .query({
         query: gql`
-          query ($token: String!) {
-            recipes(token: $token) {
+          query ($search: SearchRecipeType!, $token: String!) {
+            search(search: $search, token: $token) {
               id
               title
               description
@@ -61,10 +64,13 @@ class Recipes extends Component {
             }
           }
         `,
-        variables: { token: this.authService.getToken() },
+        variables: {
+          search,
+          token: this.authService.getToken(),
+        },
       })
       .then((res) => {
-        this.setState({ recipes: res.data.recipes, loading: false });
+        this.setState({ recipes: res.data.search, loading: false });
       })
       .catch((_) => {
         this.alertRef.current.alert(
@@ -80,6 +86,7 @@ class Recipes extends Component {
     return (
       <Page>
         <AlertMessage ref={this.alertRef} />
+        <SearchFilter load={this.searchRecipes} ref={this.searchRef} />
         <this.renderRecipes />
       </Page>
     );
@@ -92,6 +99,14 @@ class Recipes extends Component {
           <div className="spinner-grow" role="status">
             <span className="visually-hidden">Loading...</span>
           </div>
+        </div>
+      );
+    }
+
+    if (this.state.recipes.length === 0) {
+      return (
+        <div className="no-recipes-container">
+          <h4>Keine Rezepte gefunden.</h4>
         </div>
       );
     }

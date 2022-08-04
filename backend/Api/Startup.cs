@@ -14,16 +14,16 @@ namespace Api
 {
     public class Startup
     {
-        public const string graphqlPath = "/graphiql";
-        // public const string graphqlApiPath = "/api";
-        public const string graphqlApiPath = "";
+        public const string graphqlPath = "/graphql";
+        public const string graphqlApiPath = "/recipes/gql";
+        // public const string graphqlApiPath = "/";
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<GraphQLSchema>();
 
             services.AddGraphQL(options => {
-                options.EnableMetrics = false;
+                options.EnableMetrics = false;                
             }).AddSystemTextJson().AddGraphTypes(typeof(GraphQLSchema), ServiceLifetime.Scoped);
 
             var authClient = new GraphQLHttpClient("https://api.thomasmiller.info/auth", new NewtonsoftJsonSerializer());
@@ -53,7 +53,7 @@ namespace Api
             );
 
             app.UseRouting();
-            app.UseGraphQL<GraphQLSchema>();
+            app.UseGraphQL<GraphQLSchema>(graphqlApiPath);
             app.UseGraphiQl(graphqlPath, graphqlApiPath);            
 
             app.UseEndpoints(endpoints =>

@@ -16,7 +16,8 @@ namespace Api.Services
 
         public RecipeService()
         {
-            this.database = new MySqlConnection(@"server=localhost;port=3306;userid=root;password=adminpass;database=recipes");
+            // this.database = new MySqlConnection(@"server=localhost;port=3306;userid=root;password=adminpass;database=recipes");
+            this.database = new MySqlConnection(@"server=mysql;port=3306;userid=root;password=rootpass;database=recipes");            
             this.database.Open();
         }        
 
@@ -127,7 +128,7 @@ namespace Api.Services
             // keywords
             if (search.keywords != null && search.keywords != string.Empty)
             {
-                string[] keywords = search.keywords.Split(" ").Select(c => string.Format("'%{0}%'", c)).ToArray();
+                string[] keywords = search.keywords.Split(" ").Select(c => string.Format("%{0}%", c)).ToArray();
                 List<string> parsedKeywords = new List<string>();
                 for (int i = 0; i < keywords.Count(); i++)
                 {
@@ -167,7 +168,7 @@ namespace Api.Services
             // ingredients
             if (search.ingredients != null && search.ingredients.Count() != 0)
             {
-                string[] ingredients = search.ingredients.Select(c => string.Format("'%{0}%'", c)).ToArray();
+                string[] ingredients = search.ingredients.Select(c => string.Format("%{0}%", c)).ToArray();
                 List<string> parsedIngredients = new List<string>();
                 for (int i = 0; i < ingredients.Count(); i++)
                 {
@@ -187,7 +188,7 @@ namespace Api.Services
             // tags
             if (search.tags != null && search.tags.Count() != 0)
             {
-                string[] tags = search.tags.Select(c => string.Format("'%{0}%'", c)).ToArray();
+                string[] tags = search.tags.Select(c => string.Format("%{0}%", c)).ToArray();
                 List<string> parsedTags = new List<string>();
                 for (int i = 0; i < tags.Count(); i++)
                 {
@@ -377,6 +378,7 @@ namespace Api.Services
             command.Parameters.AddWithValue("@title", recipe.title);
             command.Parameters.AddWithValue("@description", recipe.description);
             command.Parameters.AddWithValue("@instructions", recipe.instructions);
+            command.Parameters.AddWithValue("@preptime", recipe.preptime);
             command.Parameters.AddWithValue("@people", recipe.people);
             command.ExecuteNonQuery();
             
