@@ -109,25 +109,24 @@ class Recipes extends Component {
                 </Cardheader>
                 <CardBody>
                   <div>
-                    <span className="badge people-container" key={index}>
+                    <span className="badge people-container">
                       {recipe.people} Personen
                     </span>
-                    <span className="badge people-container" key={index}>
+                    <span className="badge people-container">
                       Zubereitet:{" "}
                       <Datetime value={recipe.last_cooked} format="date" />
                     </span>
                   </div>
                   <p>{recipe.description}</p>
-                  <p></p>
                 </CardBody>
                 <CardFooter>
-                  <div className="tags-container">
-                    {recipe.tags.map((tag, index) => (
-                      <span className="badge rounded-pill" key={index}>
+                  <span className="tags-container">
+                    {recipe.tags.map((tag, t_index) => (
+                      <span className="badge rounded-pill" key={t_index}>
                         {tag.value}
                       </span>
                     ))}
-                  </div>
+                  </span>
                 </CardFooter>
               </CardFrame>
             </a>

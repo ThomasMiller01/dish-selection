@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <Page>
       <center>
-        <h1 className="home-header-text">Recipe Selection</h1>
+        <h1 className="home-header-text">Next Recipe Click</h1>
         <br></br>
-        <h2>Site is under construction ...</h2>
+        <h2>Display recipe with a lot of infos here</h2>
       </center>
     </Page>
   );

@@ -17,7 +17,7 @@ class Header extends Component {
               data-bs-toggle="collapse"
               data-bs-target="#navbar_public"
             >
-              <span className="navbar-toggler-icon"></span>
+              <i className="fa-solid fa-bars"></i>
             </button>
             <div
               className="collapse navbar-collapse justify-content-center header-nav-items"
@@ -31,7 +31,7 @@ class Header extends Component {
               </NavLink>
             </div>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary settings"
               type="button"
               data-bs-toggle="offcanvas"
               data-bs-target="#sidebar"

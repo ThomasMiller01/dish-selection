@@ -29,8 +29,12 @@
 
 // page for displaying a single recipe
 .recipe-container {
-    padding: 0 15%;
+    padding: 0 15px;
     color: var(--text_dark);
+
+    @media (min-width: 992px) {
+        padding: 0 15%;
+    }
 
     .header {
         width: 100%;

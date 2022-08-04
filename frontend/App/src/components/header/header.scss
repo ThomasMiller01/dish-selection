@@ -10,19 +10,6 @@
     padding: 7px;
 }
 
-.header-brand-link {
-    padding: 0;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-
-    span {
-        color: var(--text_light);
-        margin: 10px;
-        font-size: 24px;
-    }
-}
-
 .nav-link {
     color: var(--text_light);
 
@@ -47,17 +34,29 @@
     position: absolute;
     right: 10px;
     top: 10px;
+
+    color: var(--text) !important;
+    border: 1px solid var(--text) !important;
+    font-size: 28px;
+    font-weight: normal;
 }
 
-.header-nav-divider {
-    display: block;
-    height: 50px;
-}
-
-.header-user-account {
+.settings {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    left: 10px;
+    background-color: var(--background_light);
+    color: var(--text_dark);
+    border: none;
+
+    &:active,
+    &:focus,
+    &:visited,
+    &:hover {
+        background-color: var(--background_light);
+        color: var(--text_dark);
+        border: none;
+    }
 }
 
 @media (min-width: 992px) {
@@ -65,7 +64,7 @@
         margin-top: 0;
     }
 
-    .header-nav-divider {
-        display: none !important;
+    .settings {
+        position: unset;
     }
 }
