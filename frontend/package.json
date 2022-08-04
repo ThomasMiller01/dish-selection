@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "app": "yarn --cwd ./App/ && yarn --cwd ./App/ start",
-    "library-documentation": "yarn --cwd ./Library/doc/ && yarn --cwd ./Library/doc/ start"
+    "app": "yarn --cwd ./App/ && yarn --cwd ./App/ start"
   }
 }

@@ -1,7 +1,6 @@
 # Projects
 
 - App
-- Library (Documentation)
 
 # Development
 
@@ -18,7 +17,6 @@ yarn <project-name>
 `<project-name>` can be (see projects above):
 
 - `app`
-- `library-documentation`
 
 **Example:**
 
