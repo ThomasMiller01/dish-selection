@@ -1719,6 +1719,14 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
+"@tinymce/tinymce-react@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-4.2.0.tgz#af2a098153e6eeadc36cfb8940880d7dce425ac5"
+  integrity sha512-Oyi/hDvARR29oqUwTgYXDnMV9E/c7C8V+iK+gUj9tndVXsfSJRYVOw3MTK9CCC9f7alN/S4CYaPpIaA3f4VZzw==
+  dependencies:
+    prop-types "^15.6.2"
+    tinymce "^6.0.0 || ^5.5.1"
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
@@ -8357,6 +8365,11 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+"tinymce@^6.0.0 || ^5.5.1":
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-6.1.2.tgz#d2bca8c372d546d0688f6504ccc431e9ca4e6137"
+  integrity sha512-tl4KbEKdPzyPTatJkblN2AqzRj9jaRGyATnwaSnsLFGKb4AI6B+4e0Gc8dUDXuqAjgSnHokhzamrQJLbSn4CmQ==
 
 tmpl@1.0.5:
   version "1.0.5"

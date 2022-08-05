@@ -1,0 +1,88 @@
+.add-recipe-container {
+    margin-top: 30px;
+    background-color: var(--background_container);
+    padding: 15px;
+    border-radius: 30px;
+    color: var(--text_light);
+
+    @media (min-width: 992px) {
+        padding: 30px;
+    }
+
+    h2 {
+        margin-bottom: 25px;
+    }
+
+    .row {
+        margin-bottom: 1rem !important;
+    }
+
+    .add-button-container {
+        text-align: right;
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+.add-multiple-container {
+    .input-group {
+        margin-bottom: 15px;
+        color: var(--text_dark);
+
+        .btn {
+            background-color: var(--text_light);
+            border-left: 1px solid var(--text_dark);
+            color: var(--text_dark);
+
+            &:hover {
+                background-color: var(--highlight);
+                color: var(--text_light);
+            }
+        }
+    }
+
+    .multiple-container {
+        margin-bottom: 5px !important;
+        display: flex;
+        align-items: center;
+
+        .input-group {
+            margin-bottom: 0;
+        }
+
+        .form-floating {
+            input {
+                padding: 15px 10px 2px 12px;
+                height: 50px;
+                border-radius: 0;
+            }
+
+            label {
+                top: -2px;
+            }
+        }
+
+        .form-select {
+            flex: none;
+            width: fit-content;
+        }
+
+        .amount-input {
+            width: 90px;
+        }
+
+        .form-floating:first-of-type>input {
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+
+        .form-floating:last-of-type>input {
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .library-button {
+            margin: 10px 0;
+        }
+    }
+}

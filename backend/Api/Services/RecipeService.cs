@@ -440,5 +440,12 @@ namespace Api.Services
 
             return recipe_id.ToString();
         }
+
+        public RecipeModel nextRecipe()
+        {
+            // select list of recipes that were last cooked the longest ago
+            // select random one of those recipes
+            return this.getRecipeById(3);
+        }
     }
 }

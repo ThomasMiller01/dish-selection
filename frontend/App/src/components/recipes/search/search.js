@@ -7,6 +7,8 @@ import Keywords from "./keywords";
 import Preptime from "./preptime";
 import People from "./people";
 import LastCooked from "./last_cooked";
+import Tags from "./tags";
+import Ingredients from "./ingredients";
 
 import "./search.scss";
 
@@ -21,6 +23,8 @@ class SearchFilter extends Component {
     this.preptimeRef = createRef();
     this.peopleRef = createRef();
     this.lastCookedRef = createRef();
+    this.ingredientsRef = createRef();
+    this.tagsRef = createRef();
   }
 
   getSearch = () => {
@@ -28,6 +32,8 @@ class SearchFilter extends Component {
     let preptime = this.preptimeRef.current.getState();
     let people = this.peopleRef.current.getState();
     let lastCooked = this.lastCookedRef.current.getState();
+    let ingredients = this.ingredientsRef.current.getState().ingredients;
+    let tags = this.tagsRef.current.getState().tags;
 
     let search = {};
 
@@ -35,6 +41,8 @@ class SearchFilter extends Component {
     if (preptime.value !== -1) search.preptime = preptime;
     if (people.value !== -1) search.people = people;
     if (lastCooked.value !== -1) search.last_cooked = lastCooked;
+    if (ingredients.length !== 0) search.ingredients = ingredients;
+    if (tags.length !== 0) search.tags = tags;
 
     return search;
   };
@@ -75,6 +83,12 @@ class SearchFilter extends Component {
                   </div>
                   <div className="col-sm-12 col-md-7 col-xxl-4">
                     <LastCooked ref={this.lastCookedRef} />
+                  </div>
+                  <div className="col-sm-12 col-md-4">
+                    <Ingredients ref={this.ingredientsRef} />
+                  </div>
+                  <div className="col-sm-12 col-md-4">
+                    <Tags ref={this.tagsRef} />
                   </div>
                   <div className="col-sm-12">
                     <button className="btn search-button" onClick={this.search}>

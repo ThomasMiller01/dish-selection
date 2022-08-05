@@ -105,3 +105,32 @@ query($search:SearchRecipeType!, $token:String!) {
   },
   "token": "jwttoken"
 }
+
+----- Get Next Recipe -----
+query($token:String!) {
+  next(token:$token) {
+    id
+    title  
+    description
+    instructions
+    ingredients {
+      id
+      name
+      amount
+      unit
+      comment
+    }
+    preptime
+    people
+    last_cooked
+    created
+    tags {
+      id
+      value
+    }
+  }
+}
+----- Variables -----
+{  
+  "token": "jwttoken"
+}

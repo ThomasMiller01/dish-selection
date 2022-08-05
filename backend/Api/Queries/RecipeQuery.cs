@@ -64,6 +64,23 @@ namespace Api.Queries
                     }
                 }
             );
+            Field<RecipeType>(
+                name: "next",
+                arguments: new QueryArguments(new QueryArgument<StringGraphType> { Name = "token" }),
+                resolve: context =>
+                {
+                    var token = context.GetArgument<string>("token");
+                    if (token != "" && authService.tokenValidation(token).Result)
+                    {
+                        var recipe = recipeService.nextRecipe();
+                        return recipe;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            );
         }
     }
 }

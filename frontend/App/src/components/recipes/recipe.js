@@ -143,7 +143,8 @@ class Recipe extends Component {
               {this.state.ingredients.map((ingredient, index) => (
                 <tr key={index}>
                   <td>
-                    {ingredient.amount} {ingredient.unit}
+                    {ingredient.amount === 0 ? "" : ingredient.amount}{" "}
+                    {ingredient.unit}
                   </td>
                   <td>{ingredient.name}</td>
                   <td>{ingredient.comment}</td>
@@ -160,7 +161,7 @@ class Recipe extends Component {
         </div>
         <div className="description-container">
           <h3>Beschreibung:</h3>
-          <p>{this.state.description}</p>
+          <p dangerouslySetInnerHTML={{ __html: this.state.description }} />
         </div>
       </div>
     );

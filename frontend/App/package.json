@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.6.9",
+    "@tinymce/tinymce-react": "^4.2.0",
     "apollo-boost": "^0.4.9",
     "customize-cra": "^1.0.0",
     "graphql": "^16.5.0",

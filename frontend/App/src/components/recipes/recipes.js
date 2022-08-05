@@ -114,7 +114,10 @@ class Recipes extends Component {
     return (
       <div className="row">
         {this.state.recipes.map((recipe, index) => (
-          <div className="col recipe-card" key={index}>
+          <div
+            className="col-sm-12 col-md-6 col-lg-4 col-xxl-3 recipe-card"
+            key={index}
+          >
             <a href={"/recipes/" + recipe.id}>
               <CardFrame>
                 <Cardheader>
@@ -132,7 +135,7 @@ class Recipes extends Component {
                       <Datetime value={recipe.last_cooked} format="date" />
                     </span>
                   </div>
-                  <p>{recipe.description}</p>
+                  <p dangerouslySetInnerHTML={{ __html: recipe.description }} />
                 </CardBody>
                 <CardFooter>
                   <span className="tags-container">
