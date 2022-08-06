@@ -16,8 +16,8 @@ namespace Api.Services
 
         public RecipeService()
         {
-            this.database = new MySqlConnection(@"server=localhost;port=3306;userid=root;password=adminpass;database=recipes");
-            // this.database = new MySqlConnection(@"server=mysql;port=3306;userid=root;password=rootpass;database=recipes");            
+            // this.database = new MySqlConnection(@"server=localhost;port=3306;userid=root;password=adminpass;database=recipes");
+            this.database = new MySqlConnection(@"server=mysql;port=3306;userid=root;password=rootpass;database=recipes");            
             this.database.Open();
         }        
 
