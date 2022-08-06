@@ -1,7 +1,11 @@
 import React, { Component, createRef } from "react";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { gql } from "apollo-boost";
 
+import { backend_api, auth_api } from "../../api_urls";
 import RecipeInfo from "./recipeInfo";
 
+import AuthService from "library/src/components/AuthService/authservice";
 import Button from "library/src/components/Button/button";
 
 import "./nextRecipe.scss";
@@ -11,7 +15,18 @@ class NextRecipe extends Component {
     super(props);
     this.props = props;
 
-    this.recipeId = -1;
+    this.authService = new AuthService(auth_api, "recipe-selection-token");
+
+    this.api = new ApolloClient({
+      cache: new InMemoryCache(),
+      link: new HttpLink({
+        uri: backend_api,
+      }),
+      defaultOptions: {
+        watchQuery: { fetchPolicy: "no-cache" },
+        query: { fetchPolicy: "no-cache" },
+      },
+    });
 
     this.recipeInfoRef = createRef();
   }
@@ -27,10 +42,23 @@ class NextRecipe extends Component {
   cookRecipe = () => {
     let recipeId = this.recipeInfoRef.current.getRecipeId();
 
-    // TODO call graphql api to update last_cooked
-    console.log(recipeId);
-
-    this.props.history.push("/recipes/" + recipeId);
+    this.api
+      .mutate({
+        mutation: gql`
+          mutation ($recipe_id: Int!, $token: String!) {
+            cookRecipe(recipe_id: $recipe_id, token: $token) {
+              value
+            }
+          }
+        `,
+        variables: {
+          recipe_id: recipeId,
+          token: this.authService.getToken(),
+        },
+      })
+      .then((_) => {
+        this.props.history.push("/recipes/" + recipeId);
+      });
   };
 
   render() {

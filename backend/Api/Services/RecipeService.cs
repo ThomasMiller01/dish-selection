@@ -447,5 +447,14 @@ namespace Api.Services
             // select random one of those recipes
             return this.getRecipeById(3);
         }
+
+        public string cookRecipe(int recipe_id)
+        {
+            var updateLastCookedQuery = "UPDATE recipes SET last_cooked=CURRENT_TIMESTAMP WHERE id=@ID";
+            var command = new MySqlCommand(updateLastCookedQuery, this.database);
+            command.Parameters.AddWithValue("@ID", recipe_id);
+            command.ExecuteNonQuery();
+            return recipe_id.ToString();
+        }
     }
 }

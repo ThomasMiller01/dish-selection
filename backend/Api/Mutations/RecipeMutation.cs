@@ -30,6 +30,25 @@ namespace Api.Mutations
                     }
                 }
             );
+
+            Field<MutationType>(
+                name: "cookRecipe",
+                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "recipe_id" }, new QueryArgument<StringGraphType> { Name = "token" }),
+                resolve: context =>
+                {
+                    var recipe_id = context.GetArgument<int>("recipe_id");
+                    var token = context.GetArgument<string>("token");
+                    if (token != "" && authService.tokenValidation(token).Result)
+                    {
+                        var value = recipeService.cookRecipe(recipe_id);
+                        return new MutationModel { value = value };
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            );
         }
     }
 }

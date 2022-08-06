@@ -80,7 +80,11 @@ class RecipeInfo extends Component {
         this.setState({ ...res.data.next, loading: false, error: false });
       })
       .catch((_) => {
-        this.alertRef.current.alert("Could not load recipe ...", "error", 3000);
+        this.alertRef.current.alert(
+          "Rezept konnte nicht geladen werden ...",
+          "error",
+          5000
+        );
         this.setState({ loading: false, error: true });
       });
   };

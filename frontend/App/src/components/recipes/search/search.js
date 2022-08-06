@@ -58,43 +58,47 @@ class SearchFilter extends Component {
         <div className="col-sm-12 col-md-11 col-lg-9 col-xl-8 search-controls-container">
           <CardFrame>
             <CardBody>
-              <button
-                className="btn filter-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#search-filter"
-              >
-                <i className="fa-solid fa-sliders"></i>
-              </button>
-              <div
-                className="collapse"
-                id="search-filter"
-                style={{ width: "100%" }}
-              >
-                <div className="row">
-                  <div className="col-sm-12 col-md-6 col-xxl-4">
-                    <Keywords ref={this.keywordsRef} />
+              <div className="row justify-content-end">
+                <div className="col-sm-12 col-lg-8 col-xl-6 col-xxl-4 justify-content-center">
+                  <Keywords search={this.search} ref={this.keywordsRef} />
+                </div>
+                <div className="col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
+                  <button
+                    className="btn filter-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#search-filter"
+                  >
+                    <i className="fa-solid fa-sliders"></i>
+                  </button>
+                </div>
+                <div
+                  className="collapse"
+                  id="search-filter"
+                  style={{ width: "100%" }}
+                >
+                  <div className="row">
+                    <div className="col-sm-12 col-md-6 col-xxl-4">
+                      <Preptime ref={this.preptimeRef} />
+                    </div>
+                    <div className="col-sm-12 col-md-6 col-xxl-4">
+                      <People ref={this.peopleRef} />
+                    </div>
+                    <div className="col-sm-12 col-md-6 col-xxl-4">
+                      <LastCooked ref={this.lastCookedRef} />
+                    </div>
+                    <div className="col-sm-12 col-md-6">
+                      <Ingredients ref={this.ingredientsRef} />
+                    </div>
+                    <div className="col-sm-12 col-md-6">
+                      <Tags ref={this.tagsRef} />
+                    </div>
                   </div>
-                  <div className="col-sm-12 col-md-6 col-xxl-4">
-                    <Preptime ref={this.preptimeRef} />
-                  </div>
-                  <div className="col-sm-12 col-md-5 col-xxl-4">
-                    <People ref={this.peopleRef} />
-                  </div>
-                  <div className="col-sm-12 col-md-7 col-xxl-4">
-                    <LastCooked ref={this.lastCookedRef} />
-                  </div>
-                  <div className="col-sm-12 col-md-4">
-                    <Ingredients ref={this.ingredientsRef} />
-                  </div>
-                  <div className="col-sm-12 col-md-4">
-                    <Tags ref={this.tagsRef} />
-                  </div>
-                  <div className="col-sm-12">
-                    <button className="btn search-button" onClick={this.search}>
-                      Search
-                    </button>
-                  </div>
+                </div>
+                <div className="col-sm-12">
+                  <button className="btn search-button" onClick={this.search}>
+                    Search
+                  </button>
                 </div>
               </div>
             </CardBody>

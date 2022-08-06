@@ -43,3 +43,16 @@ mutation($recipe:AddRecipeType!, $token:String!) {
   },
   "token": "jwttoken"
 }
+
+----- Cook Recipe -----
+mutation ($recipe_id:Int!, $token:String!) {
+  cookRecipe(recipe_id:$recipe_id, token:$token) {
+    value
+  }
+}
+
+----- Variables -----
+{
+  "recipe_id": 0,
+  "token": "jwttoken"
+}
