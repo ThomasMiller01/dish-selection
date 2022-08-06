@@ -11,18 +11,13 @@ class ColorThemes {
         default: true,
       },
       {
-        name: "White",
-        value: "white",
+        name: "Grey",
+        value: "grey",
         default: false,
       },
       {
         name: "Saturated",
         value: "saturated",
-        default: false,
-      },
-      {
-        name: "Night",
-        value: "night",
         default: false,
       },
     ];

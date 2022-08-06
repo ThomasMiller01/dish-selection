@@ -18,9 +18,15 @@
     .search-button {
         width: fit-content;
         float: right;
+        color: #000;
+        background-color: #ffc107;
+        border-color: #ffc107;
 
-        background-color: var(--highlight);
-        color: var(--text);
+        &:hover {
+            color: #000;
+            background-color: #ffca2c;
+            border-color: #ffc720;
+        }
     }
 
     .form-select {
