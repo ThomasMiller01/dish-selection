@@ -90,11 +90,7 @@ class AddRecipe extends Component {
     recipe.ingredients = this.ingredientsRef.current.getIngredients();
     recipe.tags = this.tagsRef.current.getTags();
 
-    this.setState({ loading: true, ...this.recipeState });
-    this.EditorDescription.updateContent(this.recipeState.description);
-    this.EditorInstructions.updateContent(this.recipeState.instructions);
-    this.ingredientsRef.current.clear();
-    this.tagsRef.current.clear();
+    this.setState({ loading: true });
 
     this.api
       .mutate({
@@ -116,7 +112,11 @@ class AddRecipe extends Component {
           "success",
           3000
         );
-        this.setState({ loading: false });
+        this.setState({ loading: false, ...this.recipeState });
+        this.EditorDescription.updateContent(this.recipeState.description);
+        this.EditorInstructions.updateContent(this.recipeState.instructions);
+        this.ingredientsRef.current.clear();
+        this.tagsRef.current.clear();
       })
       .catch((_) => {
         this.alertRef.current.alert(

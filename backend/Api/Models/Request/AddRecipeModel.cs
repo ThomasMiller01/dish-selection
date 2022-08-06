@@ -20,7 +20,7 @@ namespace Api.Models.Request
     public class AddIngredient
     {
         public string name { get; set; }
-        public double amount { get; set; }
+        public string amount { get; set; }
         public IngredientUnit unit { get; set; }
         public string comment { get; set; }
     }

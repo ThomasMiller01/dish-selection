@@ -24,7 +24,7 @@ namespace Api.Models.Response
     {
         public int id { get; set; }
         public string name { get; set; }
-        public double amount { get; set; }
+        public string amount { get; set; }
         public IngredientUnit unit {get; set;}
         public string comment{ get; set; }
     }

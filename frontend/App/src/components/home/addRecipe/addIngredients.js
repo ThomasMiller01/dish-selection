@@ -19,7 +19,6 @@ class AddIngredients extends Component {
     let ingredients = JSON.parse(JSON.stringify(this.state.ingredients));
     ingredients.forEach((ingredient) => {
       delete ingredient.id;
-      if (ingredient.amount === "") ingredient.amount = 0;
     });
     return ingredients;
   };
@@ -66,18 +65,6 @@ class AddIngredients extends Component {
     this.setState({ ingredients });
   };
 
-  changeNumberField = (id, type, value) => {
-    let ingredients = this.state.ingredients;
-    let parsed;
-    if (value === "") {
-      parsed = "";
-    } else {
-      parsed = parseFloat(value);
-    }
-    ingredients.find((i) => i.id === id)[type] = parsed;
-    this.setState({ ingredients });
-  };
-
   render() {
     return (
       <div className="add-multiple-container">
@@ -119,13 +106,13 @@ class AddIngredients extends Component {
                   </div>
                   <div className="form-floating amount-input">
                     <input
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="amount"
                       placeholder="Menge"
                       value={ingredient.amount}
                       onChange={(e) =>
-                        this.changeNumberField(
+                        this.changeTextField(
                           ingredient.id,
                           "amount",
                           e.target.value

@@ -16,8 +16,8 @@ namespace Api.Services
 
         public RecipeService()
         {
-            // this.database = new MySqlConnection(@"server=localhost;port=3306;userid=root;password=adminpass;database=recipes");
-            this.database = new MySqlConnection(@"server=mysql;port=3306;userid=root;password=rootpass;database=recipes");            
+            this.database = new MySqlConnection(@"server=localhost;port=3306;userid=root;password=adminpass;database=recipes");
+            // this.database = new MySqlConnection(@"server=mysql;port=3306;userid=root;password=rootpass;database=recipes");            
             this.database.Open();
         }        
 
@@ -70,7 +70,7 @@ namespace Api.Services
                     var recipe_id = ingredientsReader.GetInt32(0);
                     var ingredient_id = ingredientsReader.GetInt32(1);
                     var name = ingredientsReader.GetString(2);
-                    var amount = ingredientsReader.GetDouble(3);
+                    var amount = ingredientsReader.GetString(3);
                     var unit = ingredientsReader.GetString(4);
                     var comment = ingredientsReader.GetString(5);
 
@@ -247,7 +247,7 @@ namespace Api.Services
                         {
                             id = ingredient_id,
                             name = reader.GetString(12),
-                            amount = reader.GetDouble(13),
+                            amount = reader.GetString(13),
                             unit = (IngredientUnit)Enum.Parse(typeof(IngredientUnit), reader.GetString(14), true),
                             comment = reader.GetString(15)
                         });
@@ -316,7 +316,7 @@ namespace Api.Services
                 {
                     var ingredient_id = ingredientsReader.GetInt32(0);
                     var name = ingredientsReader.GetString(1);
-                    var amount = ingredientsReader.GetDouble(2);
+                    var amount = ingredientsReader.GetString(2);
                     var unit = ingredientsReader.GetString(3);
                     var comment = ingredientsReader.GetString(4);
                                         
@@ -445,7 +445,7 @@ namespace Api.Services
         {
             // select list of recipes that were last cooked the longest ago
             // select random one of those recipes
-            return this.getRecipeById(3);
+            return this.getRecipeById(10);
         }
 
         public string cookRecipe(int recipe_id)

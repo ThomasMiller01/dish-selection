@@ -99,6 +99,12 @@ class Recipe extends Component {
     );
   }
 
+  parseUnit = (unit) => {
+    if (unit === "Stück") return "";
+
+    return unit;
+  };
+
   renderRecipe = () => {
     if (this.state.loading) {
       return (
@@ -143,8 +149,7 @@ class Recipe extends Component {
               {this.state.ingredients.map((ingredient, index) => (
                 <tr key={index}>
                   <td>
-                    {ingredient.amount === 0 ? "" : ingredient.amount}{" "}
-                    {ingredient.unit}
+                    {ingredient.amount} {this.parseUnit(ingredient.unit)}
                   </td>
                   <td>{ingredient.name}</td>
                   <td>{ingredient.comment}</td>
