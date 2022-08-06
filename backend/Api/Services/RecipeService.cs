@@ -442,10 +442,19 @@ namespace Api.Services
         }
 
         public RecipeModel nextRecipe()
-        {
-            // select list of recipes that were last cooked the longest ago
-            // select random one of those recipes
-            return this.getRecipeById(10);
+        {            
+            var nextRecipeQuery = "SELECT id FROM recipes WHERE last_cooked < CURDATE() - INTERVAL 14 DAY ORDER BY RAND()";
+            var nextRecipeCommand = new MySqlCommand(nextRecipeQuery, this.database);
+            object recipe_id = nextRecipeCommand.ExecuteScalar();
+
+            if (recipe_id == null)
+            {
+                var anyRecipeQuery = "SELECT id FROM recipes ORDER BY RAND()";
+                var anyRecipeCommand = new MySqlCommand(anyRecipeQuery, this.database);
+                recipe_id = anyRecipeCommand.ExecuteScalar();
+            }
+
+            return this.getRecipeById((int)recipe_id);            
         }
 
         public string cookRecipe(int recipe_id)
