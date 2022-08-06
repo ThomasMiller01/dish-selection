@@ -11,6 +11,10 @@
     .action-buttons {
         width: 100%;
         text-align: center;
+        position: sticky;
+        bottom: 0;
+        background-color: var(--background_container);
+        padding: 5px 0;
 
         .library-button,
         .btn-warning {
@@ -27,7 +31,7 @@
 }
 
 .recipe-info-container {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 
     .header {
         width: 100%;
