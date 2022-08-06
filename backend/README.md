@@ -14,9 +14,9 @@ MySql database
 
 **ingredients**
 
-| id                               | name         | amount | unit         | comment        |
-| -------------------------------- | ------------ | ------ | ------------ | -------------- |
-| int (primary key, autoincrement) | varchar(255) | double | varchar(255) | varchar(10000) |
+| id                               | name         | amount       | unit         | comment        |
+| -------------------------------- | ------------ | ------------ | ------------ | -------------- |
+| int (primary key, autoincrement) | varchar(255) | varchar(255) | varchar(255) | varchar(10000) |
 
 **tags**
 
