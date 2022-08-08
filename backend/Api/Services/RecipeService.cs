@@ -16,8 +16,8 @@ namespace Api.Services
 
         public RecipeService()
         {
-            this.connectionString = @"server=localhost;port=3306;userid=root;password=adminpass;database=recipes";
-            // this.connectionString = @"server=mysql;port=3306;userid=root;password=rootpass;database=recipes";
+            // this.connectionString = @"server=localhost;port=3306;userid=root;password=adminpass;database=recipes";
+            this.connectionString = @"server=mysql;port=3306;userid=root;password=rootpass;database=recipes";
         }
 
         public IEnumerable<RecipeModel> getRecipes()
